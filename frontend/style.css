@@ -1,0 +1,156 @@
+#main {
+    margin-left: 50px;
+    padding-top: 20px;
+    padding-left: 100px;
+    padding-right: 100px;
+    font-family: Arial;
+}
+
+#mainTitle {
+    cursor: pointer;
+    color: royalblue;
+    font-size: 70px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#subTitle {
+    font-family:'Trebuchet MS';
+    font-weight: lighter;
+    font-size: 15px;
+}
+
+#subDescription {
+    font-size: 15px;
+    margin-bottom: 50px;
+}
+
+#searchBar {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    border: 2px solid royalblue;
+    color: royalblue;
+    box-sizing: border-box;
+    outline: none;
+    border-radius: 5px;
+}
+
+#searchBar::placeholder {
+    color: royalblue;
+}
+
+select {
+    width: 15%;
+    padding: 10px;
+    margin-bottom: 2px;
+    border: 1px solid dimgrey;
+    color: dimgrey;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+#coursesContainer {
+    margin-top: 25px;
+    display: grid;
+    grid-gap: 50px;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.courseBox {
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgb(106, 101, 101);
+    padding: 20px;
+}
+
+.courseTitle {
+    font-size: 25px;
+    font-family:'Trebuchet MS';
+    font-weight: bolder;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.courseDescription {
+    font-family:'Trebuchet MS';
+    font-weight: lighter;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    font-size: 15px;
+}
+
+.ratingContainer {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.courseStars {
+    font-size: 25px;
+    color: lightslategray;
+    margin: 5px;
+}
+
+.courseReview {
+    font-size: 15px;
+    color:slategrey;
+    margin: 5px;
+}
+
+.offeredTerm {
+    margin: 5px;
+    background-color: lightblue;
+    border-radius: 15px;
+    font-size: 15px;
+    padding: 5px;
+}
+
+#navBar {
+    width: 75px;
+    height: 100%;
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    top: 0;
+    left: 0;
+    background-color: rgb(249, 248, 252);
+}
+
+#navBar img, #navBar svg {
+    display: block;
+    padding: 20px;
+    width: 30px;
+    height: 30px;
+}
+
+#rotateImg {
+    transform: rotate(90deg);
+}
+
+.popup {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    outline: 1px solid black;
+    width: 700px;
+    height: 700px;
+    z-index: 1000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.popup button {
+    background-color: rgb(242, 242, 250);
+    color: royalblue;
+    border: 1px solid royalblue;
+    font-size: 25px;
+    width: 100px;
+    height: 50px;
+}
