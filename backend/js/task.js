@@ -3,23 +3,89 @@
  * Task 1
  */
 function leafFiles(files) {
-    return [];
+    return files
+        .filter(file => !file.categories.includes('Folder'))
+        .map(file => file.name);
 }
 
 /**
- * Task 1
+ * Task 2
  */
 function kLargestCategories(files, k) {
-    return [];
+    const dictionary = {};
+    files.forEach(file => {
+        file.categories.forEach(category => {
+            if (!dictionary[category]) {
+                dictionary[category] = 1;
+            } else {
+                dictionary[category]++;
+            }
+        });
+    });
+
+    return Object.entries(dictionary)
+        .sort((a, b) => {
+            if (a[1] !== b[1]) {
+                return b[1] - a[1]; // By size
+            }
+            return a[0].localeCompare(b[0]) // Alphabetically
+        })
+        .map(entry => entry[0])
+        .splice(0, k);
 }
 
 /**
- * Task 1
+ * Task 3
  */
-function largestFileSize(files) {
-    return 0;
+// Calculates total size of a file
+function calcTotalSize(fileId, fileMap) {
+    const file = fileMap.get(fileId);
+
+    // If total size hasn't been calculated
+    if (!file.totalSize) {
+        file.totalSize = file.size;
+        // Add size of children recursively
+        file.children.forEach(childId => {
+            file.totalSize += calcTotalSize(childId, fileMap);
+        });
+    }
+
+    return file.totalSize;
 }
 
+function largestFileSize(files) {
+    if (files.length === 0) {
+        return 0;
+    }
+
+    // Add files to map
+    const fileMap = new Map();
+    files.forEach(file => {
+        fileMap.set(file.id, {...file, children: []});
+    });
+
+    // Add children to parent files
+    files.forEach(file => {
+        const parent = fileMap.get(file.parent);
+        if (parent) {
+            parent.children.push(file.id);
+        }
+    });
+
+    // Calculate total size for each file
+    fileMap.forEach((_, fileId) => {
+        calcTotalSize(fileId, fileMap);
+    });
+
+    // Find largest file size
+    let largestFileSize = 0;
+    fileMap.forEach(file => {
+        if (file.totalSize > largestFileSize) {
+            largestFileSize = file.totalSize;
+        }
+    });
+    return largestFileSize;
+}
 
 function arraysEqual(a, b) {
     if (a === b) return true;
